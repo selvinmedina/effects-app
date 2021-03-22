@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { Usuario } from 'src/app/models/usuario.model';
 import {
-  cargarUsuarioError,
-  cargarUsuarioSuccess,
+  cargarUsuariosError,
+  cargarUsuariosSuccess,
   cargarUsuarios,
 } from '../actions';
 
@@ -24,13 +24,13 @@ const _usuariosReducer = createReducer(
   usuariosInitialState,
 
   on(cargarUsuarios, (state) => ({ ...state, loading: true })),
-  on(cargarUsuarioSuccess, (state, { usuarios }) => ({
+  on(cargarUsuariosSuccess, (state, { usuarios }) => ({
     ...state,
     loading: false,
     loaded: true,
     users: [...usuarios],
   })),
-  on(cargarUsuarioError, (state, { payload }) => ({
+  on(cargarUsuariosError, (state, { payload }) => ({
     ...state,
     loading: false,
     loaded: false,

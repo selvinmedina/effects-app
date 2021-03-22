@@ -7,7 +7,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { of } from 'rxjs';
 
 @Injectable()
-export class UsuariosEffects {
+export class UsuarioEffects {
   constructor(
     private actions$: Actions,
     private usuariosService: UsuarioService
@@ -15,15 +15,15 @@ export class UsuariosEffects {
 
   loadMovies$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(usuariosActions.cargarUsuarios),
-      mergeMap(() =>
-        this.usuariosService.getUsers().pipe(
+      ofType(usuariosActions.cargarUsuario),
+      mergeMap((action) =>
+        this.usuariosService.getUsersById(action.id).pipe(
           map((resp) => resp['data']),
-          map((users) =>
-            usuariosActions.cargarUsuariosSuccess({ usuarios: users })
+          map((user) =>
+            usuariosActions.cargarUsuarioSuccess({ usuario: user })
           ),
           catchError((err) =>
-            of(usuariosActions.cargarUsuariosError({ payload: err }))
+            of(usuariosActions.cargarUsuarioError({ payload: err }))
           )
         )
       )

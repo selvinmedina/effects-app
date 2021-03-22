@@ -5,9 +5,9 @@ export const cargarUsuario = createAction(
   '[Usuario] cargarUsuario',
   props<{ id: string }>()
 );
-export const cargarUsuariouccess = createAction(
+export const cargarUsuarioSuccess = createAction(
   '[Usuario] cargarUsuariouccess',
-  props<{ id: string }>()
+  props<{ usuario: Usuario }>()
 );
 export const cargarUsuarioError = createAction(
   '[Usuario] cargarUsuarioError',
